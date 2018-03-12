@@ -1,0 +1,87 @@
+
+<!-- saved from url=(0051)http://tightype.com/trials/download.php?p=subscribe -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script language="Javascript" type="text/javascript">
+
+function checkform()
+{
+  for (i=0;i<fieldstocheck.length;i++) {
+    if (eval("document.subscribeform.elements['"+fieldstocheck[i]+"'].type") == "checkbox") {
+      if (document.subscribeform.elements[fieldstocheck[i]].checked) {
+      } else {
+        alert("Please enter your "+fieldnames[i]);
+        eval("document.subscribeform.elements['"+fieldstocheck[i]+"'].focus()");
+
+        return false;
+      }
+    } else {
+      if (eval("document.subscribeform.elements['"+fieldstocheck[i]+"'].value") == "") {
+        alert("Please enter your "+fieldnames[i]);
+        eval("document.subscribeform.elements['"+fieldstocheck[i]+"'].focus()");
+
+        return false;
+      }
+    }
+  }
+  for (i=0;i<groupstocheck.length;i++) {
+    if (!checkGroup(groupstocheck[i],groupnames[i])) {
+      return false;
+    }
+  }
+  
+  if (! checkEmail()) {
+    alert("Email address is not valid");
+
+    return false;
+  }
+
+  return true;
+}
+
+var fieldstocheck = new Array();
+var fieldnames = new Array();
+function addFieldToCheck(value,name)
+{
+  fieldstocheck[fieldstocheck.length] = value;
+  fieldnames[fieldnames.length] = name;
+}
+var groupstocheck = new Array();
+var groupnames = new Array();
+function addGroupToCheck(value,name)
+{
+  groupstocheck[groupstocheck.length] = value;
+  groupnames[groupnames.length] = name;
+}
+
+function compareEmail()
+{
+  return (document.subscribeform.elements["email"].value == document.subscribeform.elements["emailconfirm"].value);
+}
+
+function checkEmail()
+{
+  var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(document.subscribeform.elements["email"].value);
+}
+
+function checkGroup(name,value)
+{
+  option = -1;
+  for (i=0;i<document.subscribeform.elements[name].length;i++) {
+    if (document.subscribeform.elements[name][i].checked) {
+      option = i;
+    }
+  }
+  if (option == -1) {
+    alert ("Please enter your "+value);
+
+    return false;
+  }
+
+  return true;
+}
+
+</script></head><body><form method="post" action="http://tightype.com/trials/download.php?p=subscribe" name="subscribeform"><span>
+  <div class="required"><label for="email">Email address *</label></div>
+  <input type="text" name="email" value="" size="40" id="email">
+  <script language="Javascript" type="text/javascript">addFieldToCheck("email","Email address");</script><input type="hidden" name="htmlemail" value="1">
+</span><input type="hidden" name="list[3]" value="signup"><input type="hidden" name="listname[3]" value="Trials"><div style="display:none"><input type="text" name="VerificationCodeX" value="" size="20"></div><input type="submit" name="subscribe" value="Request Trials" onclick="return checkform();"></form><span class="emailplaceholder">Okay, actually here please!</span><script src="./Scripts/jquery.min.js"></script><script>$("input[type=text]").click(function() {$(".emailplaceholder").hide();});</script>	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="HandheldFriendly" content="True"><link rel="stylesheet" media="screen" type="text/css" href="./style_2017.css">	<link rel="stylesheet" media="screen" type="text/css" href="./subscribe.css"></body></html>
